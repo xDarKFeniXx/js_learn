@@ -28,4 +28,19 @@ const a=promt('один из последнийх просмотренных ф�
 
 personalMovieDB.movies[a]=b;
 personalMovieDB.movies[c]=d;
+
+
+
+
+
+
+if (personalMovieDB.count>30){
+    console.log('Вы киноман');    
+} else if (personalMovieDB.count>=10){
+    console.log('Вы классический зритель');
+} else if(personalMovieDB.count<10){
+    console.log('Просмотрено довольно мало фильмов');
+} else {
+    console.log('Произошла ошибка');
+}
 console.log(personalMovieDB);
