@@ -13,27 +13,21 @@
 "Любимый жанр #(номер по порядку, начиная с 1) - это (название из массива)"*/
 'use strict';
 
-let numberOfFilms;
 
-function start() {
-    numberOfFilms = +prompt('Сколько фильмов вы уже посмотрели?', '');
 
-    while (numberOfFilms == '' || numberOfFilms == null || isNaN(numberOfFilms)) {
-        numberOfFilms = +prompt('Сколько фильмов вы уже посмотрели?', '');
-    }
-}
-start();
+
+
 const personalMovieDB = {
-    count: numberOfFilms,
+    count: 0,
     movies: {},
     actors: {},
     genres: [],
     privat: false,
-    rememberMyFilms:function () {
+    rememberMyFilms: function () {
         for (let i = 0; i < 2; i++) {
             const a = prompt('Один из последних просмотренных фильмов?', ''),
-                  b = prompt('На сколько оцените его?', '');
-        
+                b = prompt('На сколько оцените его?', '');
+
             if (a != null && b != null && a != '' && b != '' && a.length < 50) {
                 personalMovieDB.movies[a] = b;
                 console.log('done');
@@ -52,28 +46,43 @@ const personalMovieDB = {
             console.log("Вы киноман");
         } else {
             console.log("Произошла ошибка");
-        } 
+        }
     },
-    showMyDB:function  (hidden) {
+    showMyDB: function (hidden) {
         if (!hidden) {
             console.log(personalMovieDB);
         }
     },
-    writeYourGenres:function () {
+    writeYourGenres: function () {
         for (let i = 1; i <= 3; i++) {
-            personalMovieDB.genres[i - 1] = prompt(`Ваш любимый жанр под номером ${i}`);
+            let genres=prompt(`ваши любимые жанры через запятую`);
+            personalMovieDB.genres =genres.split(', ') 
         }
+        personalMovieDB.genres.forEach((item, i)=>{
+            console.log(`любимый жанр ${i+1} это ${item}`);
+            
+        })
+    },
+    start: function () {
+        personalMovieDB.count = +prompt('Сколько фильмов вы уже посмотрели?', '');
+
+        while (personalMovieDB.count == '' || personalMovieDB.count == null || isNaN(personalMovieDB.count)) {
+            personalMovieDB.count = +prompt('Сколько фильмов вы уже посмотрели?', '');
+        }
+    },
+    toggleVisibleMyDB:function () {
+        personalMovieDB.privat=!personalMovieDB.privat
     }
 };
 
-
-personalMovieDB.rememberMyFilms();
-personalMovieDB.checkCinemas();
-
-
+// personalMovieDB.start();
+// personalMovieDB.rememberMyFilms();
+// personalMovieDB.checkCinemas();
 
 
-personalMovieDB.showMyDB(personalMovieDB.privat);
 
 
-personalMovieDB.writeYourGenres();
+// personalMovieDB.showMyDB(personalMovieDB.privat);
+
+
+// personalMovieDB.writeYourGenres();
