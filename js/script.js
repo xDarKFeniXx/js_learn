@@ -32,3 +32,22 @@ let genre=document.querySelector('.promo__genre');
 console.log(genre);
 genre.textContent='Драма'
 
+let conten=document.querySelector('.promo__bg');
+
+conten.style.backgroundImage='url("../img/bg.jpg")';
+
+let listFilms=document.querySelector('.promo__interactive-list');
+
+// listFilms.forEach(item=>{
+//     item.remove()
+// });
+listFilms.innerHTML="";
+movieDB.movies.sort();
+movieDB.movies.forEach((item , i)=>{
+    listFilms.innerHTML+=
+    `
+    <li class="promo__interactive-item">${i+1}. ${item}
+    <div class="delete"></div>
+    </li>
+    `
+})
