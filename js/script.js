@@ -24,3 +24,8 @@ const movieDB = {
     ]
 };
 
+let promotion=document.querySelector('.promo__adv'),
+    body=document.querySelector('body')
+
+console.log(body);
+promotion.remove();
