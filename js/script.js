@@ -39,7 +39,8 @@ window.addEventListener('DOMContentLoaded', function() {
 		}
     });
     
-    const deadline='2020-05-20';
+    const deadline='2020-05-31';
+    
     const getZero=(num)=>{
         if(num>=0&&num<10){
             return `0${num}`;
@@ -82,4 +83,40 @@ window.addEventListener('DOMContentLoaded', function() {
        
     }
     setClock('.timer', deadline)
+
+
+    //modal
+    let modalTrigger=document.querySelectorAll('[data-modal]'),
+        modal=document.querySelector('.modal'),
+        modalCloseBtn=document.querySelector('[data-close]');
+    function closeModal() {
+        modal.classList.add('hide');
+        modal.classList.remove('show');
+        // modal.classList.toggle('show');
+        document.body.style.overflow='';
+    }
+
+    modalTrigger.forEach(modalWindow=>{
+        modalWindow.addEventListener('click', (e)=>{
+            // e.preventDefault();
+            modal.classList.add('show');
+            modal.classList.remove('hide');
+            // modal.classList.toggle('show');
+            document.body.style.overflow='hidden';
+            
+        })
+    })
+    modalCloseBtn.addEventListener('click', closeModal)    
+    modal.addEventListener('click', (e)=>{
+        if (e.target===modal){
+            closeModal();
+        }
+    
+
+    })
+    document.addEventListener('keydown', (e)=>{
+        if (e.code='Escape' && modal.classList.contains('show')){
+            closeModal();
+        }
+    });
 });
